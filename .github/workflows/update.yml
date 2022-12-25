@@ -1,36 +1,42 @@
-# This is a basic workflow to help you get started with Actions
+# Name of the GitHub Actions job
+name: Publish update of apollo-server4-sveltekit library to npm
 
-name: CI
-
-# Controls when the workflow will run
+# Controls when the job will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the job on push or pull request events for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Enable manually
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  # Name of the job
+  update-npm:
+    # Run the job on an Ubuntu virtual machine
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      # Download the repository code to the virtual machine
+      - name: Download repository code
+        uses: actions/checkout@v3
+      # Set up Node.js on the virtual machine and set the version to version 16
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      # Install TypeScript globally on the virtual machine
+      - name: Install TypeScript
+        run: npm install -g typescript
+      # Install all project dependencies on the virtual machine
+      - name: Install dependencies
+        run: yarn
+      # Build the project on the virtual machine
+      - name: Build project
+        run: yarn build
+      # Publish the "mikro-client" library to npm using the authentication token stored in the "NPM_TOKEN" secret
+      - name: Publish library to npm
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
