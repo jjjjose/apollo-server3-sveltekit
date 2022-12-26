@@ -25,7 +25,7 @@ Before anything, you must create a file `+server.ts` in the `src/routes/api/` fo
 - To use this function, first import it in your code:
 
   ```js
-  import { creaHandler } from 'apollo-server3-sveltekit'
+  import { createHandler } from 'apollo-server3-sveltekit'
   ```
 
 - then you can use the `createHandler` function to create an Apollo Server handler:
