@@ -56,8 +56,8 @@ Before anything, you must create a file `+server.ts` in the `src/routes/api/` fo
 
 ## Information
 
-If you want to make more advanced configurations or see the difference of apollo server 4 with older versions, you can see the official Apollo Server documentation
-<a href="https://www.apollographql.com/docs/apollo-server/" target="_blank">here</a>.
+If you want to make more advanced configurations or see the difference of apollo server 3 with older versions, you can see the official Apollo Server documentation
+<a href="https://www.apollographql.com/docs/apollo-server/v3" target="_blank">here</a>.
 
 ## License
 

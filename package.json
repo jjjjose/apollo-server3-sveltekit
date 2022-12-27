@@ -1,6 +1,6 @@
 {
   "name": "apollo-server3-sveltekit",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "The Ultimate Integration of Apollo Server 3 for Your SvelteKit App",
   "main": "dist/index",
   "types": "dist/index",
